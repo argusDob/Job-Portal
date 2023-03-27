@@ -1,5 +1,5 @@
-$font-primary: 'Roboto', sans-serif;
-$font-secondary: 'Open Sans', sans-serif;
+$font-primary: "Roboto", sans-serif;
+$font-secondary: "Open Sans", sans-serif;
 
 $font-weight-light: 300;
 $font-weight-regular: 400;
@@ -38,6 +38,14 @@ $small-line-height: 1.5;
 $small-margin-bottom: 0.5rem;
 $small-color: $text-color;
 
+$button-font-size: $font-size-base;
+$button-font-weight: $font-weight-medium;
+$button-line-height: 1.5;
+$button-padding: 0.75rem 1.5rem;
+$button-border-radius: 0.25rem;
+$button-background-color: $primary-color;
+$button-color: $white-color;
+
 .typography {
   h1 {
     font-size: $heading-1-font-size;
@@ -58,7 +66,7 @@ $small-color: $text-color;
   }
 
   h3 {
-    font-size: $heading-3-font-size;
+    font-size: 300px;
     font-weight: $heading-3-font-weight;
     line-height: $heading-3-line-height;
     margin-bottom: $heading-3-margin-bottom;
