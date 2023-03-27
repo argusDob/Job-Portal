@@ -1,0 +1,10 @@
+@import "../../assets/scss/colors.scss";
+@import "../../assets/scss/spacers.scss";
+@import "../../assets/scss/typography.scss";
+@import "../../assets/scss/breakpoints.scss";
+
+.registration-form {
+  &__container{
+    padding: $spacer-32 $spacer-32 $spacer-32 $spacer-32;
+  }
+}
