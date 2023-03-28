@@ -1,6 +1,7 @@
 @import "../../assets/scss/colors.scss";
 @import "../../assets/scss/spacers.scss";
-@import "@/assets/scss/typography.scss";
+@import "../../assets/scss/mixins/typography.mixins.scss";
+
 
 .input-text {
   display: flex;
@@ -9,6 +10,8 @@
 
   &__label {
     margin-bottom: 0.5rem;
+    @include typography('read', 'body');
+
   }
 
   &__field {

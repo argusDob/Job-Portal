@@ -1,0 +1,19 @@
+@import "../../assets/scss/colors.scss";
+@import "../../assets/scss/spacers.scss";
+@import '../../assets/scss/mixins/breakpoint.mixins.scss';
+
+
+.login-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid $border-color;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: $spacer-16;
+  @include breakpoint-to(tablet-landscape) {
+    grid-template-columns: 1fr;
+  }
+  
+  &__form {
+    border-right: $spacer-4 solid $border-color;
+  }
+}

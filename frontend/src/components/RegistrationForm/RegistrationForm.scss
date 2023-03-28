@@ -1,10 +1,13 @@
 @import "../../assets/scss/colors.scss";
 @import "../../assets/scss/spacers.scss";
-@import "../../assets/scss/typography.scss";
 @import "../../assets/scss/breakpoints.scss";
+@import "../../assets/scss/mixins/typography.mixins.scss";
 
 .registration-form {
-  &__container{
+  h3 {
+    @include typography("titles", "1");
+  }
+  &__container {
     padding: $spacer-32 $spacer-32 $spacer-32 $spacer-32;
   }
 }
