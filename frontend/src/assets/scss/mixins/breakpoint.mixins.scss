@@ -1,0 +1,86 @@
+@import '../breakpoints.scss';
+
+@function breakpointConfigExists($breakpoint-name) {
+  @return map-has-key($__breakpoints, $breakpoint-name);
+}
+
+@function breakpointIsNumeric($breakpoint) {
+  @return type-of($breakpoint) == 'number';
+}
+
+@function getBreakpointConfig($breakpoint-name) {
+  @if not(map-has-key($__breakpoints, $breakpoint-name)) {
+    @error 'Could not find breakpoint configuration based on breakpoint name `#{$breakpoint-name}`';
+  }
+  @return map-get($__breakpoints, $breakpoint-name);
+}
+
+@function getBreakpointConfigStart($breakpoint-name) {
+  $breakpointConfig: getBreakpointConfig($breakpoint-name);
+  @if not(map-has-key($breakpointConfig, 'from')) {
+    @error 'Key "from" not found in Breakpoint configuration with name `#{$breakpoint-name}`';
+  }
+  $from: map-get($breakpointConfig, 'from');
+  @return $from;
+}
+
+@function getBreakpointConfigEnd($breakpoint-name) {
+  $breakpointConfig: getBreakpointConfig($breakpoint-name);
+  @if not(map-has-key($breakpointConfig, 'to')) {
+    @error 'Key "to" not found in Breakpoint configuration with name `#{$breakpoint-name}`';
+  }
+  $to: map-get($breakpointConfig, 'to');
+  @return $to;
+}
+
+@function getBreakpointTo($breakpoint-name) {
+  $from: getBreakpointConfigStart($breakpoint-name);
+  @return $from - 1px;
+}
+
+@mixin breakpoint-from($breakpoint) {
+  @if (breakpointConfigExists($breakpoint)) {
+    $from: getBreakpointConfigStart($breakpoint);
+    @media (min-width: $from) {
+      @content;
+    }
+  } @else if (breakpointIsNumeric($breakpoint)) {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid value as breakpoint name. Got `#{$breakpoint}`. Should be an existing breakpoint name OR an absolute value like 320px.';
+  }
+}
+
+@mixin breakpoint-to($breakpoint) {
+  @if (breakpointConfigExists($breakpoint)) {
+    $to: getBreakpointConfigStart($breakpoint);
+    @media (max-width: $to) {
+      @content;
+    }
+  } @else if(breakpointIsNumeric($breakpoint)) {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid value as breakpoint name. Got `#{$breakpoint}`. Should be an existing breakpoint name OR an absolute value like 320px.';
+  }
+}
+
+@mixin breakpoint-on($breakpoint-name) {
+  $from: getBreakpointConfigStart($breakpoint-name);
+  $to: getBreakpointConfigEnd($breakpoint-name);
+  @media (max-width: $to) and (min-width: $from) {
+    @content;
+  }
+}
+
+@mixin breakpoint-range($breakpoint-name-from, $breakpoint-name-to) {
+  $from: getBreakpointConfigStart($breakpoint-name-from);
+  $to: getBreakpointConfigEnd($breakpoint-name-end);
+
+  @media (max-width: $to) and (min-width: $from) {
+    @content;
+  }
+}

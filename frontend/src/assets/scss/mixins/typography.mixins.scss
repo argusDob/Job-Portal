@@ -1,0 +1,303 @@
+@import '../fonts.variables.scss';
+@import '../font-sizes.scss';
+@import '../mixins/breakpoint.mixins.scss';
+
+$responsive-typography-config: (
+  'headlines': (
+    'base-styling': (
+      'font-family': $__font-roxborough,
+      'font-weight': 500,
+    ),
+    'types': (
+      '1': (
+        'styling': (
+          'line-height': 1.1,
+        ),
+        'breakpoints': (
+          'phone-portrait': (
+            'font-size': $__font-size-32,
+          ),
+          'tablet-portrait': (
+            'font-size': $__font-size-36,
+          ),
+          'laptop': (
+            'font-size': $__font-size-40,
+          ),
+        ),
+      ),
+      '2': (
+        'styling': (
+          'line-height': 1.125,
+        ),
+        'breakpoints': (
+          'phone-portrait': (
+            'font-size': $__font-size-28,
+          ),
+          'tablet-portrait': (
+            'font-size': $__font-size-32,
+          ),
+          'laptop': (
+            'font-size': $__font-size-32,
+          ),
+        ),
+      ),
+      '3': (
+        'styling': (
+          'line-height': 1.071,
+        ),
+        'breakpoints': (
+          'phone-portrait': (
+            'font-size': $__font-size-24,
+          ),
+          'tablet-portrait': (
+            'font-size': $__font-size-28,
+          ),
+          'laptop': (
+            'font-size': $__font-size-28,
+          ),
+        ),
+      ),
+      '4': (
+        'styling': (
+          'font-size': $__font-size-24,
+          'line-height': 1.083,
+        ),
+      ),
+    ),
+  ),
+  'titles': (
+    'base-styling': (
+      'font-family': $__font-activ-grotesk-extended,
+      'font-weight': 700,
+      'text-transform': uppercase,
+    ),
+    'types': (
+      '1': (
+        'styling': (
+          'line-height': 1.154,
+        ),
+        'breakpoints': (
+          'phone-portrait': (
+            'font-size': $__font-size-20,
+          ),
+          'tablet-portrait': (
+            'font-size': $__font-size-26,
+          ),
+          'laptop': (
+            'font-size': $__font-size-26,
+          ),
+        ),
+      ),
+      '2': (
+        'styling': (
+          'font-size': $__font-size-20,
+          'line-height': 1.3,
+          'text-transform': none,
+        ),
+      ),
+      '3': (
+        'styling': (
+          'font-size': $__font-size-16,
+          'line-height': 1.5,
+        ),
+      ),
+      '4': (
+        'styling': (
+          'font-size': $__font-size-14,
+          'line-height': 1.429,
+        ),
+      ),
+      '5': (
+        'styling': (
+          'font-size': $__font-size-12,
+          'line-height': 1.333,
+        ),
+      ),
+      'small': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-size': $__font-size-18,
+          'text-transform': none,
+          'line-height': 1.222,
+        ),
+      ),
+    ),
+  ),
+  'read': (
+    'base-styling': (
+      'font-family': $__font-activ-grotesk,
+      'font-weight': 400,
+      'line-height': 1.5,
+    ),
+    'types': (
+      'preamble': (
+        'styling': (
+          'font-size': $__font-size-18,
+        ),
+      ),
+      'preamble-bold': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-weight': 700,
+          'font-size': $__font-size-18,
+        ),
+      ),
+      'body': (
+        'styling': (
+          'font-size': $__font-size-14,
+          'line-height': 1.714,
+        ),
+      ),
+      'body-bold': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-weight': 700,
+          'font-size': $__font-size-14,
+          'line-height': 1.714,
+        ),
+      ),
+      'detail': (
+        'styling': (
+          'font-size': $__font-size-12,
+          'line-height': 1.333,
+        ),
+      ),
+      'detail-bold': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-weight': 700,
+          'font-size': $__font-size-12,
+          'line-height': 1.333,
+        ),
+      ),
+      'detail-small': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-size': $__font-size-10,
+          'line-height': 1.167,
+        ),
+      ),
+      'detail-small-bold': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-weight': 700,
+          'font-size': $__font-size-10,
+          'line-height': 1.167,
+        ),
+      ),
+      'label': (
+        'styling': (
+          'font-family': $__font-activ-grotesk,
+          'font-weight': 700,
+          'line-height': 1.167,
+          'text-transform': uppercase,
+        ),
+        'breakpoints': (
+          'phone-portrait': (
+            'font-size': $__font-size-10,
+          ),
+          'tablet-portrait': (
+            'font-size': $__font-size-12,
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+
+@function get-category($category-name) {
+  @if not(map-has-key($responsive-typography-config, $category-name)) {
+    @error 'Could not find `#{$category-name}` in $responsive-typography-config';
+  }
+  @return map-get($responsive-typography-config, $category-name);
+}
+
+@function get-category-types($category-name) {
+  $category-config: get-category($category-name);
+  @if not(map-has-key($category-config, 'types')) {
+    @error 'Could not find types within `#{$category-name}`';
+  }
+  @return map-get($category-config, 'types');
+}
+
+@function get-category-type($category-name, $type) {
+  $category-types: get-category-types($category-name);
+  @if not(map-has-key($category-types, $type)) {
+    @error 'Could not find `#{$type}` within `#{$category-name}`';
+  }
+  @return map-get($category-types, $type);
+}
+
+@function get-category-type-breakpoint($category, $type, $breakpoint) {
+  $category-type: get-category-type($category, $type);
+  @if not(map-has-key($category-type, 'breakpoints')) {
+    @error 'Could not find `breakpoints` within `#{$category}`';
+  }
+  $breakpoints: map-get($category-type, 'breakpoints');
+
+  @if not(map-has-key($breakpoints, $breakpoint)) {
+    @error 'Could not find `#{$breakpoint}` within `#{$category}`';
+  }
+  @return map-get($breakpoints, $breakpoint);
+}
+
+@function get-category-base-styling($category) {
+  $category-config: get-category($category);
+  @if not(map-has-key($category-config, 'base-styling')) {
+    @error 'Could not find base-styling within `#{$category}`';
+  }
+  @return map-get($category-config, 'base-styling');
+}
+
+@mixin attributes($map, $is-important: false) {
+  @each $key, $value in $map {
+    @if ($is-important == true) {
+      #{$key}: $value !important;
+    } @else {
+      #{$key}: $value;
+    }
+  }
+}
+
+@mixin typography($category, $type, $is-important: false) {
+  $base-styling: get-category-base-styling($category);
+  $type-config: get-category-type($category, $type);
+
+  @include attributes($base-styling);
+
+  @if map-has-key($type-config, 'styling') {
+    $styling: map-get($type-config, 'styling');
+    @include attributes($styling, $is-important);
+  }
+
+  @if map-has-key($type-config, 'breakpoints') {
+    $breakpoints: map-get($type-config, 'breakpoints');
+    @each $breakpoint, $attributes in $breakpoints {
+      @include breakpoint-from($breakpoint) {
+        @include attributes($attributes, $is-important);
+      }
+    }
+  }
+}
+
+@mixin __static-typography($category, $type, $breakpoint) {
+  $base-styling: get-category-base-styling($category);
+  $type-config: get-category-type($category, $type);
+
+  @include attributes($base-styling);
+
+  @if map-has-key($type-config, 'styling') {
+    $styling: map-get($type-config, 'styling');
+    @include attributes($styling);
+  }
+
+  @if $breakpoint != '' {
+    $breakpoint-styling: get-category-type-breakpoint(
+      $category,
+      $type,
+      $breakpoint
+    );
+
+    @include attributes($breakpoint-styling);
+  }
+}

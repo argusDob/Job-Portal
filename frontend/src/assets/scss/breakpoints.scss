@@ -1,20 +1,30 @@
-/* Mixin for mobile devices */
-@mixin mobile {
-    @media only screen and (max-width: 768px) {
-      @content;
-    }
-  }
-  
-  /* Mixin for tablet devices */
-  @mixin tablet {
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
-      @content;
-    }
-  }
-  
-  /* Mixin for desktop devices */
-  @mixin desktop {
-    @media only screen and (min-width: 1024px) {
-      @content;
-    }
-  }
+$__breakpoints: (
+  phone-portrait: (
+    from: 0px,
+    to: 419px,
+  ),
+  phone-portrait-medium: (
+    from: 420px,
+    to: 320px,
+  ),
+  phone-landscape: (
+    from: 420px,
+    to: 639px,
+  ),
+  tablet-portrait: (
+    from: 640px,
+    to: 1023px,
+  ),
+  tablet-landscape: (
+    from: 1024px,
+    to: 1439px,
+  ),
+  laptop: (
+    from: 1440px,
+    to: 1919px,
+  ),
+  desktop: (
+    from: 1920px,
+    to: 3840px,
+  ),
+);
