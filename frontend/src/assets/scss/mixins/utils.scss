@@ -1,0 +1,90 @@
+@mixin placeholder {
+    ::-webkit-input-placeholder {
+      @content;
+    }
+    :-moz-placeholder {
+      @content;
+    }
+    ::-moz-placeholder {
+      @content;
+    }
+    :-ms-input-placeholder {
+      @content;
+    }
+  }
+  
+  @mixin outline-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  @mixin outline-contain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  
+  @mixin position-absolute-vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @mixin position-absolute-horizontal-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  @mixin position-absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  
+  @mixin position-absolute-left-center {
+    @include position-absolute-vertical-center;
+    left: 0;
+  }
+  
+  @mixin position-absolute-right-center {
+    @include position-absolute-vertical-center;
+    right: 0;
+  }
+  
+  @mixin text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  $baseline-px: 16px;
+  
+  @function rem($px-values) {
+    // Convert the baseline into rems
+    $baseline-rem: $baseline-px / 1rem;
+  
+    // If there is only one (numeric) value, return the property/value line for it.
+    @if type-of($px-values) == 'number' {
+      @return $px-values / $baseline-rem;
+    } @else {
+      // Create an empty list that we can dump values into
+      $rem-values: unquote('');
+      @each $value in $px-values {
+        // If the value is zero, return 0
+        @if $value == 0 {
+          $rem-values: append($rem-values, $value);
+        } @else {
+          $rem-values: append($rem-values, $value / $baseline-rem);
+        }
+      }
+      // Return the property and its list of converted values
+      @return $rem-values;
+    }
+  }
+  
