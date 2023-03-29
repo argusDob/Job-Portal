@@ -1,15 +1,18 @@
 <template>
-  <div class="registration-form typography">
+  <div class="registration-form">
     <div class="registration-form__container">
       <h3>Register and unlock more features</h3>
       <form @submit.prevent="submit">
+        {{ emailInputProps }}
         <InputText
           v-bind="emailInputProps"
-          @change="handleChange"
+          @change="handleEmailChange"
           @blur="handleBlur"
         />
-
-        <ConfirmPasswordForm :confirmPasswordProps="confirmPasswordProps" />
+        <ConfirmPasswordForm
+          :confirmPasswordProps="confirmPasswordProps"
+          @change="handlePasswordForm"
+        />
         <div class="registration-form__submit-button">
           <SubmitButton text="Submit" />
         </div>
@@ -19,7 +22,7 @@
 </template>
 
 <script>
-import ConfirmPasswordForm from "../ConfirmPasswordForm/ConfirmPaswordForm.vue";
+import ConfirmPasswordForm from "../ConfirmPasswordForm/ConfirmPasswordForm.vue";
 import InputText from "../InputText/InputText.vue";
 import SubmitButton from "../PrimaryButton/PrimaryButton.vue";
 
@@ -35,18 +38,19 @@ export default {
   data() {
     return {
       formValidationReport: [],
+      inputField: {},
     };
   },
   computed: {
     emailInputProps() {
-      return getFormsConfig().emailProps;
+      return this.inputField;
     },
     confirmPasswordProps() {
       return getFormsConfig().confirmPasswordProps;
     },
   },
   methods: {
-    handleChange(value) {
+    handleEmailChange(value) {
       console.log(value);
       const existingIndex = this.formValidationReport.findIndex(
         (item) => item.name === value.name
@@ -57,9 +61,18 @@ export default {
         this.formValidationReport.push(value);
       }
     },
+    handlePasswordForm(value) {
+      const existingIndex = this.formValidationReport.findIndex(
+        (item) => item.name === value.name
+      );
+      if (existingIndex >= 0) {
+        this.formValidationReport.splice(existingIndex, 1, value);
+      } else {
+        this.formValidationReport.push(value);
+      }
+    },
     handleBlur(validationReport) {
-      this.fields[validationReport.inputIndex].isValid =
-        !validationReport.isInvalid;
+      this.inputField.isValid = !validationReport.isInvalid;
     },
     isFormValid() {
       let isValid = false;
@@ -68,11 +81,20 @@ export default {
       });
       return isValid;
     },
+    setupEmailInput() {
+      for (let props in getFormsConfig().emailProps) {
+        this.$set(this.inputField, props, getFormsConfig().emailProps[props]);
+      }
+    },
     submit() {
       if (this.isFormValid()) {
+        console.log(this.formValidationReport);
         console.log("sumbit");
       }
     },
+  },
+  created() {
+    this.setupEmailInput();
   },
 };
 </script>
