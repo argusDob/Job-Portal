@@ -3,7 +3,7 @@
     <label :for="id" class="input-text__label">{{ label }}</label>
     <input
       :id="id"
-      :type="type"
+      :type="fieldType"
       class="input-text__field"
       :class="{
         'input-text__field-valid': isInputValid,
@@ -20,6 +20,18 @@
       @keyup="handleValue()"
       @blur="handleBlur"
     />
+    <EyeIcon
+      v-if="!isPasswordVisible && type === 'password'"
+      icon="eye"
+      font-scale="2"
+      @click="handleIconClick"
+    />
+    <EyeSlashIcon
+      v-if="isPasswordVisible && type === 'password'"
+      icon="eye-slash"
+      font-scale="2"
+      @click="handleIconClick"
+    />
     <SoftError v-if="isInputValid === false">{{ errorMessage }}</SoftError>
   </div>
 </template>
@@ -28,9 +40,16 @@
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength, email } from "@vuelidate/validators";
 
+import EyeIcon from "../../assets/icons/IconAction/IconAction.vue";
+import EyeSlashIcon from "../../assets/icons/IconAction/IconAction.vue";
 import SoftError from "../SoftError/SoftError.vue";
 
 export default {
+  components: {
+    SoftError,
+    EyeIcon,
+    EyeSlashIcon,
+  },
   props: {
     autocomplete: {
       type: Boolean,
@@ -70,9 +89,6 @@ export default {
       required: true,
     },
   },
-  components: {
-    SoftError,
-  },
   setup() {
     return { rules: useVuelidate() };
   },
@@ -80,17 +96,20 @@ export default {
     return {
       valueData: "",
       validationReport: {},
+      isPasswordVisible: true,
+      fieldType: this.type,
     };
   },
   validations() {
-    if (this.name === "email") {
+    if (this.type === "email") {
+      return this.emailValidation();
+    } else if (this.type === "password") {
+      return this.passwordValidation();
+    } else {
       return {
-        valueData: { minLength: minLength(this.minlength), required, email },
+        valueData: { minLength: minLength(this.minlength), required }, // Matches this.firstName
       };
     }
-    return {
-      valueData: { minLength: minLength(this.minlength), required }, // Matches this.firstName
-    };
   },
   computed: {
     id() {
@@ -102,11 +121,11 @@ export default {
   },
   methods: {
     handleValue() {
-      this.contstructalidationReport();
+      this.constructValidationReport();
       this.$emit("change", this.validationReport);
     },
     handleBlur() {
-      this.contstructalidationReport();
+      this.constructValidationReport();
 
       if (
         Object.prototype.hasOwnProperty.call(this.validationReport, "isInvalid")
@@ -114,12 +133,50 @@ export default {
         this.$emit("blur", this.validationReport);
       }
     },
-    contstructalidationReport() {
+    passwordValidation() {
+      if (this.type === "password") {
+        return {
+          valueData: {
+            required,
+            valid: function (value) {
+              const containsUppercase = /[A-Z]/.test(value);
+              const containsLowercase = /[a-z]/.test(value);
+              const containsNumber = /[0-9]/.test(value);
+              const containsSpecial = /[#?!@$%^&*-]/.test(value);
+              return (
+                containsUppercase &&
+                containsLowercase &&
+                containsNumber &&
+                containsSpecial
+              );
+            },
+          },
+        };
+      }
+    },
+    emailValidation() {
+      if (this.type === "email") {
+        return {
+          valueData: { minLength: minLength(this.minlength), required, email },
+        };
+      }
+    },
+    handleIconClick() {
+      this.isPasswordVisible = !this.isPasswordVisible;
+      this.handlePasswordInputType();
+    },
+    handlePasswordInputType() {
+      this.fieldType = this.isPasswordVisible ? "password" : "text";
+    },
+    constructValidationReport() {
       (this.validationReport.value = this.valueData),
         (this.validationReport.isInvalid = this.rules.$invalid);
       this.validationReport.inputIndex = this.index;
       this.validationReport.name = this.name;
     },
+  },
+  mounted() {
+    this.fieldType = this.type;
   },
 };
 </script>
