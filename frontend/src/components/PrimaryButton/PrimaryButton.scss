@@ -1,30 +1,28 @@
 @import "../../assets/scss/colors.scss";
 @import "../../assets/scss/spacers.scss";
-@import "../../assets/scss/typography.scss";
+@import "../../assets/scss/mixins/typography.mixins.scss";
 
-    $button-font-size: 1rem;
-    $button-font-weight: $font-weight-medium;
-    $button-line-height: 1.5;
+
+    $button-font-size: $spacer-16;
+    $button-line-height: $spacer-24;
     $button-text-transform: uppercase;
     $button-letter-spacing: 0.1em;
-    $button-color: #fff;
-    $button-background-color: #007bff;
-    $button-border-radius: 0.25rem;
-    $button-padding: 0.5rem 1rem;
+    $button-color: $background-color;
+    $button-background-color: $primary-color-dark;
+    $button-border-radius: $spacer-4;
+    $button-padding: $spacer-8 $spacer-16;
     $button-transition: all 0.2s ease-in-out;
     
     .primary-button {
-      font-size: $button-font-size;
-      font-weight: $button-font-weight;
+      @include typography("titles", "3");
+      
       line-height: $button-line-height;
-      text-transform: $button-text-transform;
       letter-spacing: $button-letter-spacing;
       color: $button-color;
       background-color: $button-background-color;
       border-radius: $button-border-radius;
       padding: $button-padding;
       transition: $button-transition;
-      font-family: $font-primary;
       width: 100%;
     
       &:hover, &:focus {
