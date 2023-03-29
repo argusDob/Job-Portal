@@ -13,7 +13,7 @@ export default function getFormsConfig() {
       {
         type: "password",
         label: "Password:",
-        name: "Password",
+        name: "password",
         minlength: 10,
         isValid: null,
         errorMessage: "Password is required",
@@ -21,7 +21,7 @@ export default function getFormsConfig() {
       {
         type: "password",
         label: "Confirm password:",
-        name: "Password1",
+        name: "password1",
         minlength: 10,
         isValid: null,
         errorMessage: "Confirmation Password is required",
