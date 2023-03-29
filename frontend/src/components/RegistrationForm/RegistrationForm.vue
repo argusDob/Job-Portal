@@ -3,7 +3,6 @@
     <div class="registration-form__container">
       <h3>Register and unlock more features</h3>
       <form @submit.prevent="submit">
-        {{ emailInputProps }}
         <InputText
           v-bind="emailInputProps"
           @change="handleEmailChange"

@@ -1,6 +1,5 @@
 <template>
   <div class="confirm-password-input">
-    {{ rules }}
     <InputText
       v-for="(field, index) in inputTextProps"
       :key="index"
