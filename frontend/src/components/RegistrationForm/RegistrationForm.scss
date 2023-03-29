@@ -4,9 +4,7 @@
 @import "../../assets/scss/mixins/typography.mixins.scss";
 
 .registration-form {
-  h3 {
-    @include typography("titles", "1");
-  }
+
   &__container {
     padding: $spacer-32 $spacer-32 $spacer-32 $spacer-32;
   }
