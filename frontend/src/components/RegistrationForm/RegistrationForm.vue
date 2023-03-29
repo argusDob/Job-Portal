@@ -3,14 +3,13 @@
     <div class="registration-form__container">
       <h3>Register and unlock more features</h3>
       <form @submit.prevent="submit">
-        <div v-for="(field, index) in fields" :key="index">
-          <InputText
-            v-bind="field"
-            :index="index"
-            @change="handleChange"
-            @blur="handleBlur"
-          />
-        </div>
+        <InputText
+          v-bind="emailInputProps"
+          @change="handleChange"
+          @blur="handleBlur"
+        />
+
+        <ConfirmPasswordForm :confirmPasswordProps="confirmPasswordProps" />
         <div class="registration-form__submit-button">
           <SubmitButton text="Submit" />
         </div>
@@ -20,22 +19,31 @@
 </template>
 
 <script>
+import ConfirmPasswordForm from "../ConfirmPasswordForm/ConfirmPaswordForm.vue";
 import InputText from "../InputText/InputText.vue";
 import SubmitButton from "../PrimaryButton/PrimaryButton.vue";
 
-import getFormsConfig from "../RegistrationForm/FormConfig/FormConfig";
+import getFormsConfig from "./RegistrationFormConfig/registration.form.config";
 
 export default {
   components: {
+    ConfirmPasswordForm,
     InputText,
     SubmitButton,
   },
   props: {},
   data() {
     return {
-      fields: [...getFormsConfig()],
       formValidationReport: [],
     };
+  },
+  computed: {
+    emailInputProps() {
+      return getFormsConfig().emailProps;
+    },
+    confirmPasswordProps() {
+      return getFormsConfig().confirmPasswordProps;
+    },
   },
   methods: {
     handleChange(value) {
