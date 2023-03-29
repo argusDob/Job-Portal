@@ -1,8 +1,6 @@
 @import "../../assets/scss/colors.scss";
 @import "../../assets/scss/spacers.scss";
 @import "../../assets/scss/mixins/typography.mixins.scss";
-
-
 .input-text {
   display: flex;
   flex-direction: column;
@@ -10,8 +8,7 @@
 
   &__label {
     margin-bottom: 0.5rem;
-    @include typography('read', 'body');
-
+    @include typography("read", "body");
   }
 
   &__field {
@@ -25,8 +22,8 @@
       border-color: $accent-color;
     }
 
-    &::placeholder{
-        color: $text-color;
+    &::placeholder {
+      color: $text-color;
     }
   }
 
