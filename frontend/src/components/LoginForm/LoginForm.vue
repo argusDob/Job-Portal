@@ -1,12 +1,12 @@
 <template>
-  <div class="registration-form typography">
-    <div class="registration-form__container">
+  <div class="login-form">
+    <div class="login-form__container">
       <h3>Login and find your dream job</h3>
 
       <div v-for="(field, index) in fields" :key="index">
         <InputText v-bind="field" :index="index" @change="handleChange" />
       </div>
-      <div class="registration-form__submit-button">
+      <div class="login-form__submit-button">
         <SubmitButton text="Submit" />
       </div>
     </div>
