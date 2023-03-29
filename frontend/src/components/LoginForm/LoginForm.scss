@@ -3,10 +3,9 @@
 @import "../../assets/scss/mixins/typography.mixins.scss";
 @import "../../assets/scss/breakpoints.scss";
 
-.registration-form {
-  @include typography('titles', '1');
-
-  &__container{
+.login-form {
+  
+  &__container {
     padding: $spacer-32 $spacer-32 $spacer-32 $spacer-32;
   }
 }
