@@ -40,7 +40,6 @@ export default {
     },
     index: {
       type: Number,
-      required: true,
     },
     isValid: {
       type: Boolean,
