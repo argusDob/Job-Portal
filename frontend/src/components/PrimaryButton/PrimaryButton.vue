@@ -28,7 +28,7 @@ export default {
       this.isLoading = true;
     },
     primaryButtonLoadingFinish() {
-      this.isLoading = true;
+      this.isLoading = false;
     },
   },
 };
