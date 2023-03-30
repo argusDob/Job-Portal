@@ -9,6 +9,7 @@ export default function getFormsConfig() {
       minlength: 10,
       isValid: null,
       errorMessage: "Email is required",
+      notEqualErrorMessage: "",
     },
     options: [
       {
@@ -30,6 +31,7 @@ export default function getFormsConfig() {
         minlength: 10,
         isValid: null,
         errorMessage: "Password is required",
+        notEqualErrorMessage: "",
       },
       {
         type: "password",
@@ -38,6 +40,7 @@ export default function getFormsConfig() {
         minlength: 10,
         isValid: null,
         errorMessage: "Confirmation Password is required",
+        notEqualErrorMessage: "Passwords do not match",
       },
     ],
   };
