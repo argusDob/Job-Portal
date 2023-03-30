@@ -1,5 +1,6 @@
 export default function getFormsConfig() {
   const fields = {
+    header: "Register and unlock more features",
     emailProps: {
       type: "email",
       format: "email",
@@ -9,6 +10,18 @@ export default function getFormsConfig() {
       isValid: null,
       errorMessage: "Email is required",
     },
+    options: [
+      {
+        name: "candidate",
+        label: "Candidate",
+        value: "candidate",
+      },
+      {
+        name: "hire_manager",
+        label: "Hire Manager",
+        value: "hire_manager",
+      },
+    ],
     confirmPasswordProps: [
       {
         type: "password",
