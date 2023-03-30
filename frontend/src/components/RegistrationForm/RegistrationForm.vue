@@ -63,8 +63,10 @@ export default {
       this.updateLastInsertedValue(existingIndex, value);
     },
     handlePasswordForm(value) {
-      let existingIndex = this.findFormFieldIndex(value);
-      this.updateLastInsertedValue(existingIndex, value);
+      value.forEach((element) => {
+        let existingIndex = this.findFormFieldIndex(element);
+        this.updateLastInsertedValue(existingIndex, element);
+      });
     },
     updateLastInsertedValue(existingIndex, value) {
       if (existingIndex >= 0) {
@@ -78,6 +80,11 @@ export default {
         (item) => item.name === value.name
       );
       return existingIndex;
+    },
+    addSelectedOption() {
+      let selectedValidationReport =
+        this.$refs.inputRadioGroup.getSelectedValue();
+      this.formValidationReport.push(selectedValidationReport);
     },
     handleBlur(validationReport) {
       this.inputField.isValid = !validationReport.isInvalid;
@@ -95,9 +102,9 @@ export default {
       }
     },
     submit() {
-      let selectedValue = this.$refs.inputRadioGroup.getSelectedValue();
-      console.log(selectedValue);
       if (this.isFormValid()) {
+        this.addSelectedOption();
+
         console.log(this.formValidationReport);
         console.log("sumbit");
       }
