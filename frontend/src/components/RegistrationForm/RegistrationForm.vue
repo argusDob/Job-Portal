@@ -1,13 +1,14 @@
 <template>
   <div class="registration-form">
     <div class="registration-form__container">
-      <h3>Register and unlock more features</h3>
+      <h3>{{ header }}</h3>
       <form @submit.prevent="submit">
         <InputText
           v-bind="emailInputProps"
           @change="handleEmailChange"
           @blur="handleBlur"
         />
+        <InputRadioGroup :options="radioInputOptions" ref="inputRadioGroup" />
         <ConfirmPasswordForm
           :confirmPasswordProps="confirmPasswordProps"
           @change="handlePasswordForm"
@@ -23,6 +24,7 @@
 <script>
 import ConfirmPasswordForm from "../ConfirmPasswordForm/ConfirmPasswordForm.vue";
 import InputText from "../InputText/InputText.vue";
+import InputRadioGroup from "../InputRadioGroup/InputRadioGroup.vue";
 import SubmitButton from "../PrimaryButton/PrimaryButton.vue";
 
 import getFormsConfig from "./RegistrationFormConfig/registration.form.config";
@@ -31,6 +33,7 @@ export default {
   components: {
     ConfirmPasswordForm,
     InputText,
+    InputRadioGroup,
     SubmitButton,
   },
   props: {},
@@ -41,11 +44,17 @@ export default {
     };
   },
   computed: {
+    header() {
+      return getFormsConfig().header;
+    },
     emailInputProps() {
       return this.inputField;
     },
     confirmPasswordProps() {
       return getFormsConfig().confirmPasswordProps;
+    },
+    radioInputOptions() {
+      return getFormsConfig().options;
     },
   },
   methods: {
@@ -86,6 +95,8 @@ export default {
       }
     },
     submit() {
+      let selectedValue = this.$refs.inputRadioGroup.getSelectedValue();
+      console.log(selectedValue);
       if (this.isFormValid()) {
         console.log(this.formValidationReport);
         console.log("sumbit");
