@@ -59,25 +59,25 @@ export default {
   },
   methods: {
     handleEmailChange(value) {
-      console.log(value);
-      const existingIndex = this.formValidationReport.findIndex(
-        (item) => item.name === value.name
-      );
+      let existingIndex = this.findFormFieldIndex(value);
+      this.updateLastInsertedValue(existingIndex, value);
+    },
+    handlePasswordForm(value) {
+      let existingIndex = this.findFormFieldIndex(value);
+      this.updateLastInsertedValue(existingIndex, value);
+    },
+    updateLastInsertedValue(existingIndex, value) {
       if (existingIndex >= 0) {
         this.formValidationReport.splice(existingIndex, 1, value);
       } else {
         this.formValidationReport.push(value);
       }
     },
-    handlePasswordForm(value) {
+    findFormFieldIndex(value) {
       const existingIndex = this.formValidationReport.findIndex(
         (item) => item.name === value.name
       );
-      if (existingIndex >= 0) {
-        this.formValidationReport.splice(existingIndex, 1, value);
-      } else {
-        this.formValidationReport.push(value);
-      }
+      return existingIndex;
     },
     handleBlur(validationReport) {
       this.inputField.isValid = !validationReport.isInvalid;
