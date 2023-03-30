@@ -1,0 +1,76 @@
+@import "../../assets/scss/colors.scss";
+@import "../../assets/scss/spacers.scss";
+@import "../../assets/scss/mixins/typography.mixins.scss";
+@import "../../assets/scss/breakpoints.scss";
+
+.input-radio-group {
+    display: flex;
+
+    &--column{
+        flex-direction: column;
+    }
+
+  &--item {
+    margin: 0.5rem;
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      + .radio-label {
+        @include typography("read", "body");
+
+        &:before {
+          content: "";
+          background: $background-color;
+          border-radius: 100%;
+          border: 1px solid darken($background-color, 25%);
+          display: inline-block;
+          width: $spacer-24;
+          height: $spacer-24;
+          //   position: relative;
+          top: -0.2em;
+          margin-right: $spacer-16;
+          vertical-align: top;
+          cursor: pointer;
+          text-align: center;
+          transition: all 250ms ease;
+        }
+      }
+
+      &:checked {
+        + .radio-label {
+          &:before {
+            background-color: $primary-color-dark;
+            box-shadow: inset 0 0 0 $spacer-4 $background-color;
+          }
+        }
+      }
+
+      &:focus {
+        + .radio-label {
+          &:before {
+            outline: none;
+            border-color: $primary-color-dark;
+          }
+        }
+      }
+
+      &:disabled {
+        + .radio-label {
+          &:before {
+            box-shadow: inset 0 0 0 4px $background-color;
+            border-color: darken($background-color, 25%);
+            background: darken($background-color, 25%);
+          }
+        }
+      }
+
+      + .radio-label {
+        &:empty {
+          &:before {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
