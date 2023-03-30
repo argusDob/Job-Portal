@@ -23,7 +23,9 @@ export default {
   },
   validations() {
     return {
-      confirmPassword: { sameAsPassword: sameAs(this.password) },
+      password: {
+        sameAs: sameAs(this.password1, { message: "Passwords do not match" }),
+      },
     };
   },
   components: {
@@ -60,11 +62,18 @@ export default {
       }
 
       this.trackPasswordValues(value);
+      this.handleConfirmPasswordMessage();
       this.$emit("change", this.formValidationReport);
     },
     handleBlur(validationReport) {
       this.fields[validationReport.inputIndex].isValid =
         !validationReport.isInvalid;
+    },
+    handleConfirmPasswordMessage() {
+      let isPasswordSame = this.rules.password.sameAs.$invalid;
+      if (isPasswordSame) {
+        this.fields[1].errorMessage = this.fields[1].notEqualErrorMessage;
+      }
     },
     isFormValid() {
       let isValid = false;
