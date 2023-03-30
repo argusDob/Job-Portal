@@ -78,6 +78,10 @@ export default {
       type: String,
       required: true,
     },
+    notEqualErrorMessage: {
+      type: String,
+      required: false,
+    },
     placeholder: {
       type: String,
     },
