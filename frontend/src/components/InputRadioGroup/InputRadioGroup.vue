@@ -56,7 +56,12 @@ export default {
       this.$emit("change", this.selectedValue);
     },
     getSelectedValue() {
-      return this.selectedValue;
+      let validationReport = {
+        isInvalid: this.selectedValue === "",
+        value: this.selectedValue,
+      };
+
+      return validationReport;
     },
   },
 };
