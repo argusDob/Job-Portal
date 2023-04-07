@@ -1,5 +1,6 @@
 <template>
   <div class="confirm-password-input">
+    {{ inputTextProps }}
     <InputText
       v-for="(field, index) in inputTextProps"
       :key="index"
@@ -12,22 +13,9 @@
 </template>
 
 <script>
-import { useVuelidate } from "@vuelidate/core";
-import { sameAs } from "@vuelidate/validators";
-
 import InputText from "../InputText/InputText.vue";
 
 export default {
-  setup() {
-    return { rules: useVuelidate() };
-  },
-  validations() {
-    return {
-      password: {
-        sameAs: sameAs(this.password1, { message: "Passwords do not match" }),
-      },
-    };
-  },
   components: {
     InputText,
   },
@@ -62,17 +50,51 @@ export default {
       }
 
       this.trackPasswordValues(value);
-      this.handleConfirmPasswordMessage();
+      this.checkPasswordEquality(value);
+      // this.handleConfirmPasswordMessage();
       this.$emit("change", this.formValidationReport);
     },
     handleBlur(validationReport) {
       this.fields[validationReport.inputIndex].isValid =
         !validationReport.isInvalid;
+      this.checkPasswordEquality();
     },
     handleConfirmPasswordMessage() {
       let isPasswordSame = this.rules.password.sameAs.$invalid;
       if (isPasswordSame) {
         this.fields[1].errorMessage = this.fields[1].notEqualErrorMessage;
+      }
+    },
+    checkPasswordEquality() {
+      const passwordField = this.fields.find(
+        (field) => field.name === "password"
+      );
+      const password1Field = this.fields.find(
+        (field) => field.name === "password1"
+      );
+
+      if (!passwordField || !password1Field) {
+        return;
+      }
+
+      const passwordValidation = this.formValidationReport.find(
+        (report) => report.name === "password"
+      );
+      const password1Validation = this.formValidationReport.find(
+        (report) => report.name === "password1"
+      );
+
+      if (!passwordValidation || !password1Validation) {
+        return;
+      }
+
+      if (this.password !== this.password1) {
+        password1Validation.isInvalid = true;
+        password1Field.errorMessage = password1Field.notEqualErrorMessage;
+        this.$set(password1Field, "isValid", false);
+      } else {
+        password1Validation.isInvalid = false;
+        this.$set(password1Field, "isValid", true);
       }
     },
     isFormValid() {
