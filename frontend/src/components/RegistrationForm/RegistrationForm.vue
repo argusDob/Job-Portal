@@ -101,9 +101,25 @@ export default {
         this.$set(this.inputField, props, getFormsConfig().emailProps[props]);
       }
     },
+    setupCheckBoxInput() {
+      this.addSelectedOption();
+    },
     submit() {
+      // this.$store.dispatch("users/registerUser", null).then(
+      //   (response) => {
+      //     console.l;
+      //     this.$emit("clicked", response.data.theEmployee);
+      //     this.formsNotify({
+      //       msg: response.data.message,
+      //       type: response.data.messageType,
+      //     });
+      //   },
+      //   (error) => {
+      //     console.log(error);
+      //   }
+      // );
       if (this.isFormValid()) {
-        this.addSelectedOption();
+        // this.addSelectedOption();
 
         console.log(this.formValidationReport);
         console.log("sumbit");
@@ -112,6 +128,9 @@ export default {
   },
   created() {
     this.setupEmailInput();
+  },
+  mounted() {
+    this.setupCheckBoxInput();
   },
 };
 </script>
