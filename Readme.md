@@ -1,5 +1,5 @@
 <h1> JOB BOARD </h1>
-<p>A job board application to keep in the coding loop while i am sitting on the bench due to S&S bankraptrency. My main focus remains in the FE but I have init a node.js server to manipulate data between the FE and BE</p>
+<p>A job board application to keep myself in the coding loop while i am sitting on the bench due to S&S bankraptrency. My main focus remains in the FE but I have init a node.js server to manipulate data between the FE and BE</p>
 <h2>Tech Stack</h2>
 <ul>
 <li>Vue.js(2xx)</li>
@@ -13,20 +13,53 @@
 <li>MongoDB</li>
 <ul>
 
-# Table of contents
-1. [Introduction](#introduction)
-2. [Some paragraph](#paragraph1)
-    1. [Sub paragraph](#subparagraph1)
-3. [Another paragraph](#paragraph2)
+# Components
+1. [Confirm Password Form](#comp1)
+2. [Input Radio Group](#comp2)
+3. [Input Text](#comp3)
+3. [Login Form](#comp4)
+3. [Nav Bar](#comp5)
+3. [Primary Button](#comp6)
+3. [Registration Form](#comp7)
+3. [SoftError](#comp8)
 
-## This is the introduction <a name="introduction"></a>
-Some introduction text, formatted in heading 2 style
 
-## Some paragraph <a name="paragraph1"></a>
-The first paragraph text
 
-### Sub paragraph <a name="subparagraph1"></a>
-This is a sub paragraph, formatted in heading 3 style
+## Confirm Password Form <a name="comp1"></a>
+The confirm password form contains as children the Input Text component. Based on the configuration two fields are created `password` `password1`.
+The component gets the values from the `InputTextField` and created an input validation report based on the input values.
 
-## Another paragraph <a name="paragraph2"></a>
+On change init a change emit event which holds the validatation report from the input text fields
+
+## Input Radio Group <a name="comp1"></a>
+A group of Input Radio Fields. It includes as a children the `SoftError` component to inform user for potential issues.
+
+It gets two props:
+`options` :  `Type: Array` 
+`directionColumn` :`Type: Boolean`
+
+The option is the list with the radio button options.
+The Direction column bind a class to make the Radio Button Inputs column/row
+
+On change init a change emit event which holds the validatation report.
+
+
+<!-- ## Input Text <a name="comp2"></a>
 The second paragraph text
+
+## Another paragraph <a name="comp3"></a>
+The second paragraph text
+
+## Another paragraph <a name="comp4"></a>
+The second paragraph text
+
+## Another paragraph <a name="comp5"></a>
+The second paragraph text
+
+## Another paragraph <a name="comp6"></a>
+The second paragraph text
+## Another paragraph <a name="comp7"></a>
+The second paragraph text
+
+## Another paragraph <a name="comp8"></a>
+The second paragraph text -->
