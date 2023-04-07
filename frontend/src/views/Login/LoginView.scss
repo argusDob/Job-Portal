@@ -5,9 +5,11 @@
 .login-view {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 0.063rem solid $border-color;
-  box-shadow: 0 $spacer-8 $spacer-16 rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  margin-top: $spacer-16;
+  padding: $spacer-32;
+  border-radius: 0.625rem;
+  box-shadow: 0px $spacer-8 $spacer-16 rgba(0, 0, 0, 0.1);
+  background-color: #fff; //todo use color from the libary 
+  transition: transform 0.3s;
   @include breakpoint-to(tablet-landscape) {
     grid-template-columns: 1fr;
   }
