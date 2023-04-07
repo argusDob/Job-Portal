@@ -1,7 +1,6 @@
 <template>
   <div class="input-text">
     <label :for="id" class="input-text__label">{{ label }}</label>
-    {{ isValid }}
     <input
       :id="id"
       :type="fieldType"
@@ -78,10 +77,6 @@ export default {
     name: {
       type: String,
       required: true,
-    },
-    notEqualErrorMessage: {
-      type: String,
-      required: false,
     },
     placeholder: {
       type: String,
