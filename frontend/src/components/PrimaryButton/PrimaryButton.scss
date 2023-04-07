@@ -28,5 +28,10 @@
       &:hover, &:focus {
         background-color: darken($button-background-color, 10%);
       }
+      
+      svg{
+        height: $spacer-24;
+        width: $spacer-24;
+      }
     }
 
