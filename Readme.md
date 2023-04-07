@@ -16,12 +16,12 @@
 # Components
 1. [Confirm Password Form](#comp1)
 2. [Input Radio Group](#comp2)
-3. [LoginForm](#comp3)
-3. [Login Form](#comp4)
-3. [Nav Bar](#comp5)
-3. [Primary Button](#comp6)
-3. [Registration Form](#comp7)
-3. [SoftError](#comp8)
+4. [LoginForm](#comp3)
+5. [LoginView](#comp8)
+6. [Nav Bar](#comp5)
+7. [Primary Button](#comp6)
+8. [Registration Form](#comp7)
+9. [SoftError](#comp8)
 
 
 
@@ -99,22 +99,36 @@ to toogle password visibility.
 Also the component is responsible for the validation of each input text field created by the parent. It construct an validation report and it send it back to parent using
 `change` and `blur` emit events
 
-## Another paragraph <a name="comp3"></a>
+## Login Form <a name="comp3"></a>
+dssdsdf
+Login Form has as a child the InputTextFieldComponent. It gets the validation report from the Child and based on the results submit the form and send the data to the server.
 
-![Screenshot](/Screenshots/Screenshot%202023-04-07%20at%2014.21.51.png)
+![Screenshot](/Screenshots/login_form.png)
 
 The second paragraph text
 
-## Another paragraph <a name="comp4"></a>
-The second paragraph text
 
-## Another paragraph <a name="comp5"></a>
-The second paragraph text
+## Login View <a name="comp3"></a>
+A view to show Registration and Login Form 
 
-## Another paragraph <a name="comp6"></a>
-The second paragraph text
-## Another paragraph <a name="comp7"></a>
-The second paragraph text
+![Screenshot](/Screenshots/login_view.png)
 
-## Another paragraph <a name="comp8"></a>
 The second paragraph text
+## Nav Bar <a name="comp4"></a>
+Nav Bar is a Bootstrap nav bar for time being but will be replaced with my own in the near future.
+## Primary Button <a name="comp5"></a>
+A primary button with a loading state. Has two method wich triggers and finish the spinner.
+
+![Screenshot](/Screenshots/primary_button.png)
+
+## Registration Form <a name="comp6"></a>
+
+Registration Form has as children components `ConfirmPasswordForm` `InputText` `InputRadioGroup` `SubmitButton` 
+
+It gets the validation reports from the `ConfirmPasswordForm` `InputText` `InputRadioGroup` and it map it to one array.
+If all fields are valid the form is submited.
+
+![Screenshot](/Screenshots/registration_form.png)
+
+## Soft Error <a name="comp7"></a>
+A simple component to comunicate potential errors with the user.
