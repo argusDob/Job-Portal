@@ -31,7 +31,7 @@ The component gets the values from the `InputTextField` and created an input val
 
 On change init a change emit event which holds the validatation report from the input text fields
 
-## Input Radio Group <a name="comp1"></a>
+## Input Radio Group <a name="comp2"></a>
 A group of Input Radio Fields. It includes as a children the `SoftError` component to inform user for potential issues.
 
 It gets two props:
@@ -44,8 +44,53 @@ The Direction column bind a class to make the Radio Button Inputs column/row
 On change init a change emit event which holds the validatation report.
 
 
-<!-- ## Input Text <a name="comp2"></a>
-The second paragraph text
+## Input Text <a name="comp3"></a>
+
+An input text field component.
+```
+    autocomplete: {
+      type: Boolean,
+    },
+    errorMessage: {
+      type: String,
+    },
+    index: {
+      type: Number,
+    },
+    isValid: {
+      type: Boolean,
+      default: null,
+    },
+    label: {
+      type: String,
+      required: true,
+    },
+    maxlength: {
+      type: Number,
+    },
+    minlength: {
+      type: Number,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    notEqualErrorMessage: {
+      type: String,
+      required: false,
+    },
+    placeholder: {
+      type: String,
+    },
+    required: {
+      type: Boolean,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
+```
+
 
 ## Another paragraph <a name="comp3"></a>
 The second paragraph text
@@ -62,4 +107,4 @@ The second paragraph text
 The second paragraph text
 
 ## Another paragraph <a name="comp8"></a>
-The second paragraph text -->
+The second paragraph text
