@@ -50,7 +50,6 @@ export default {
 
       this.trackPasswordValues(value);
       this.checkPasswordEquality(value);
-      // this.handleConfirmPasswordMessage();
       this.$emit("change", this.formValidationReport);
     },
     handleBlur(validationReport) {
@@ -104,11 +103,9 @@ export default {
       return isValid;
     },
     trackPasswordValues(field) {
-      if (field.name === "password") {
-        this.password = field.value;
-      } else {
-        this.password1 = field.value;
-      }
+      field.name === "password"
+        ? (this.password = field.value)
+        : (this.password1 = field.value);
     },
     setupPasswordInputs() {
       this.confirmPasswordProps.forEach((field, index) => {
