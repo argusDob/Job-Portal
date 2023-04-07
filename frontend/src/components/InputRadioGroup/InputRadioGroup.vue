@@ -11,7 +11,6 @@
         type="radio"
         :value="option.value"
         v-model="selectedValue"
-        @change="handleChange"
       />
       <label :for="'radio-' + index" class="radio-label">{{
         option.label
@@ -52,9 +51,6 @@ export default {
   },
   //TODO IMPLEMENT VALIDATION
   methods: {
-    handleChange() {
-      this.$emit("change", this.selectedValue);
-    },
     getSelectedValue() {
       let validationReport = {
         isInvalid: this.selectedValue === "",
