@@ -1,6 +1,7 @@
 <template>
   <div class="input-text">
     <label :for="id" class="input-text__label">{{ label }}</label>
+    {{ isValid }}
     <input
       :id="id"
       :type="fieldType"
