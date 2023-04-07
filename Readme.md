@@ -16,7 +16,7 @@
 # Components
 1. [Confirm Password Form](#comp1)
 2. [Input Radio Group](#comp2)
-3. [Input Text](#comp3)
+3. [LoginForm](#comp3)
 3. [Login Form](#comp4)
 3. [Nav Bar](#comp5)
 3. [Primary Button](#comp6)
@@ -46,7 +46,7 @@ On change init a change emit event which holds the validatation report.
 
 ## Input Text <a name="comp3"></a>
 
-An input text field component.
+An input text field component wit the following props:
 ```
     autocomplete: {
       type: Boolean,
@@ -91,8 +91,18 @@ An input text field component.
     },
 ```
 
+It includes as children the following components: `EyeIcon` `EyeSlashIcon``password` `SoftError`
+
+That componet uses the Vuelidate plugin which takes care of the validation. If the type of the component is password the component has the an icon in the placeholder 
+to toogle password visibility. 
+
+Also the component is responsible for the validation of each input text field created by the parent. It construct an validation report and it send it back to parent using
+`change` and `blur` emit events
 
 ## Another paragraph <a name="comp3"></a>
+
+![Screenshot](/Screenshots/Screenshot%202023-04-07%20at%2014.21.51.png)
+
 The second paragraph text
 
 ## Another paragraph <a name="comp4"></a>
