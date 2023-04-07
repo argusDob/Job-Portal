@@ -1,7 +1,7 @@
 <template>
   <button class="primary-button typography">
-    <SpinIcon v-if="isLoading" />
-    <span v-else>{{ text }}</span>
+    <SpinIcon />
+    <!-- <span v-else>{{ text }}</span> -->
   </button>
 </template>
 
