@@ -111,7 +111,7 @@ The second paragraph text
 ## Login View <a name="comp3"></a>
 A view to show Registration and Login Form 
 
-![Screenshot](/Screenshots/login_view.png)
+![Screenshot](/Screenshots/login_view1.png)
 
 The second paragraph text
 ## Nav Bar <a name="comp4"></a>
