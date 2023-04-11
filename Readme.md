@@ -46,7 +46,7 @@ On change init a change emit event which holds the validatation report.
 
 ## Input Text <a name="comp3"></a>
 
-An input text field component wit the following props:
+An input text field component with the following props:
 ```
     autocomplete: {
       type: Boolean,
@@ -75,10 +75,6 @@ An input text field component wit the following props:
       type: String,
       required: true,
     },
-    notEqualErrorMessage: {
-      type: String,
-      required: false,
-    },
     placeholder: {
       type: String,
     },
@@ -91,21 +87,20 @@ An input text field component wit the following props:
     },
 ```
 
-It includes as children the following components: `EyeIcon` `EyeSlashIcon``password` `SoftError`
+It includes as a children the following components: `EyeIcon` `EyeSlashIcon``password` `SoftError`
 
 That componet uses the Vuelidate plugin which takes care of the validation. If the type of the component is password the component has the an icon in the placeholder 
 to toogle password visibility. 
 
-Also the component is responsible for the validation of each input text field created by the parent. It construct an validation report and it send it back to parent using
+Also the component is responsible for the validation of each input text field created by the parent. It constructs an validation report and it send it back to parent using
 `change` and `blur` emit events
 
 ## Login Form <a name="comp4"></a>
 dssdsdf
-Login Form has as a child the InputTextFieldComponent. It gets the validation report from the Child and based on the results submit the form and send the data to the server.
+Login Form has as a child the InputTextFieldComponent. It gets the validation report from the child and based on the results submit the form and send the data to the server.
 
 ![Screenshot](/Screenshots/login_form.png)
 
-The second paragraph text
 
 
 ## Login View <a name="comp5"></a>
@@ -113,7 +108,6 @@ A view to show Registration and Login Form
 
 ![Screenshot](/Screenshots/login_view1.png)
 
-The second paragraph text
 ## Nav Bar <a name="comp6"></a>
 Nav Bar is a Bootstrap nav bar for time being but will be replaced with my own in the near future.
 ## Primary Button <a name="comp7"></a>
