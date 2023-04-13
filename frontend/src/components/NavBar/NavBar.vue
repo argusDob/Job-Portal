@@ -1,24 +1,60 @@
 <template>
-  <div>
-    <b-navbar type="dark" variant="dark">
-      <b-navbar-nav>
-        <b-nav-item href="#">Home</b-nav-item>
-
-        <!-- Navbar dropdowns -->
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
-
-        <b-nav-item-dropdown text="User" right>
-          <b-dropdown-item href="#">Account</b-dropdown-item>
-          <b-dropdown-item href="#"
-            ><router-link to="/Login">Login</router-link></b-dropdown-item
-          >
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-navbar>
+  <div class="navigation">
+    <nav class="navigation__bar">
+      <span><h1>ICT JOB PORTAL</h1></span>
+      <b-icon
+        @click="open"
+        :class="additionalClasses"
+        class="navigation__icon"
+        icon="chevron-bar-right"
+        font-scale="1"
+      ></b-icon>
+    </nav>
+    <DialogBox
+      @close="close"
+      :show="show"
+      position="right"
+      transitionType="slide-left"
+      ><NavBarList @navListClick="close" :list="navBarList"
+    /></DialogBox>
   </div>
 </template>
+
+<script>
+import DialogBox from "../DialogBox/DialogBox.vue";
+import NavBarList from "../NavBarList/NavBarList.vue";
+
+import getNavBarListConfig from "./NavBarList.config";
+
+export default {
+  components: {
+    DialogBox,
+    NavBarList,
+  },
+  data() {
+    return {
+      show: false,
+      rotate: false,
+      navBarList: getNavBarListConfig(),
+    };
+  },
+  computed: {
+    additionalClasses() {
+      let classes = [];
+      if (this.rotate) classes.push("navigation__icon-rotate-down");
+      return classes;
+    },
+  },
+  methods: {
+    open() {
+      this.show = true;
+      this.rotate = true;
+    },
+    close() {
+      this.show = false;
+      this.rotate = false;
+    },
+  },
+};
+</script>
+<style lang="scss" scoped src="./NavBar.scss"></style>
