@@ -9,12 +9,14 @@
       <div class="login-form__submit-button">
         <SubmitButton text="Submit" />
       </div>
+      <LinkAction pathTo="/forgotPassword" text="Forget Password" />
     </div>
   </div>
 </template>
 
 <script>
 import InputText from "../InputText/InputText.vue";
+import LinkAction from "../LinkAction/LinkAction.vue";
 import SubmitButton from "../PrimaryButton/PrimaryButton.vue";
 
 import getFormsConfig from "../../components/LoginForm/FormConfig/FormConfig";
@@ -22,6 +24,7 @@ import getFormsConfig from "../../components/LoginForm/FormConfig/FormConfig";
 export default {
   components: {
     InputText,
+    LinkAction,
     SubmitButton,
   },
   props: {},
