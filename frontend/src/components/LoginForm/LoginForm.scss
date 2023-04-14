@@ -4,8 +4,11 @@
 @import "../../assets/scss/breakpoints.scss";
 
 .login-form {
-  
   &__container {
     padding: $spacer-32 $spacer-32 $spacer-32 $spacer-32;
+  }
+
+  .link-action{
+    margin-top: $spacer-16;
   }
 }
