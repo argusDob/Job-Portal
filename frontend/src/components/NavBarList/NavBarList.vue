@@ -1,23 +1,22 @@
 <template>
   <div class="nav-bar-list">
-    <div
-      v-for="(item, index) in list"
-      :key="index"
+    <router-link
+      v-for="(item, index) in navList"
       class="nav-bar-list__item"
-      @click="handleClick()"
+      tag="div"
+      :key="index"
+      :to="item.pathTo"
     >
-      <router-link :to="item.pathTo">
-        <span>{{ item.title }}</span>
-      </router-link>
+      <span>{{ item.title }}</span>
       <b-icon icon="chevron-right"></b-icon>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    list: {
+    navList: {
       type: Array,
       required: true,
     },

@@ -15,7 +15,7 @@
       :show="show"
       position="right"
       transitionType="slide-left"
-      ><NavBarList @navListClick="close" :list="navBarList"
+      ><NavBarList @navListClick="close" :navList="navList"
     /></DialogBox>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
     return {
       show: false,
       rotate: false,
-      navBarList: getNavBarListConfig(),
+      navList: getNavBarListConfig(),
     };
   },
   computed: {
