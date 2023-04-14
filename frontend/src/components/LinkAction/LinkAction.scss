@@ -1,0 +1,13 @@
+@import "../../assets/scss/colors.scss";
+@import "../../assets/scss/spacers.scss";
+@import "../../assets/scss/mixins/typography.mixins.scss";
+
+.link-action{
+    @include typography("read", "body-bold");
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover{
+        color: $primary-color-dark;
+    }
+}
